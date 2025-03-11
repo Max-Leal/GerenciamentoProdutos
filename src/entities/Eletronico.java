@@ -2,7 +2,7 @@ package entities;
 
 import enums.TipoProduto;
 
-public class Eletronico extends Product {
+public class Eletronico extends Produto {
 
     private String marca;
     private int garantiaMeses;
@@ -33,8 +33,8 @@ public class Eletronico extends Product {
     @Override
     public void exibir_informacoes() {
         super.exibir_informacoes();
-        System.out.println("Marca: " + getMarca());
-        System.out.println("Garantia Meses: " + getGarantiaMeses());
+        System.out.println("ㄴMarca: " + getMarca());
+        System.out.println("ㄴGarantia Meses: " + getGarantiaMeses());
 
     }
 

@@ -4,7 +4,7 @@ import enums.TipoProduto;
 
 import java.time.LocalDate;
 
-public class Alimento extends Product {
+public class Alimento extends Produto {
 
     private LocalDate dataValidade;
     private String categoria;
@@ -34,8 +34,8 @@ public class Alimento extends Product {
     @Override
     public void exibir_informacoes() {
         super.exibir_informacoes();
-        System.out.println("Categoria: " + getCategoria());
-        System.out.println("Data de Validade: " + getDataValidade());
+        System.out.println("ㄴCategoria: " + getCategoria());
+        System.out.println("ㄴData de Validade: " + getDataValidade());
     }
 
     @Override

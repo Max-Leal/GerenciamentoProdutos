@@ -2,7 +2,7 @@ package application;
 
 import entities.Alimento;
 import entities.Eletronico;
-import entities.Product;
+import entities.Produto;
 import entities.Roupa;
 import enums.TipoProduto;
 
@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        List<Product> products = new ArrayList<Product>();
+        List<Produto> produtos = new ArrayList<Produto>();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         char end = 'N';
@@ -27,10 +27,10 @@ public class Main {
             int opc = sc.nextInt();
             switch (opc) {
                 case 1:
-                    Product prod = modificarProduto(products, sc, dtf);
+                    Produto prod = modificarProduto(produtos, sc, dtf);
 
                     if (prod != null) {
-                        products.add(prod);
+                        produtos.add(prod);
                         System.out.println(prod.getTipo() + " adicionado com sucesso!");
                     } else {
                         System.out.println("Erro ao adicionar produto!");
@@ -39,20 +39,21 @@ public class Main {
                 case 2:
                     System.out.print("Insira o index do produto a ser alterado: ");
                     int idAlterar = sc.nextInt();
-                    products.set(idAlterar - 1, modificarProduto(products, sc, dtf));
+                    produtos.set(idAlterar - 1, modificarProduto(produtos, sc, dtf));
                     break;
                 case 3:
                     System.out.print("Insira o index do produto a ser excluido: ");
                     int idExcluir = sc.nextInt();
-                    products.remove(idExcluir - 1);
+                    produtos.remove(idExcluir - 1);
                     break;
                 case 4:
                     System.out.println("Produtos da lista:");
                     int i = 0;
-                    for (Product p : products) {
+                    for (Produto p : produtos) {
                         i++;
-                        System.out.println("Produto" + i);
+                        System.out.println("*.*.*.*.*. Produto " + i + " .*.*.*.*.*");
                         p.exibir_informacoes();
+                        System.out.println("*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*");
                     }
                     break;
                 case 5:
@@ -65,7 +66,7 @@ public class Main {
         sc.close();
     }
 
-    public static Product modificarProduto(List<Product> list, Scanner sc, DateTimeFormatter dtf) {
+    public static Produto modificarProduto(List<Produto> list, Scanner sc, DateTimeFormatter dtf) {
         System.out.println("Digite o tipo do produto (ALIMENTO, ROUPA, ELETRONICO): ");
         String tipo = sc.next().toUpperCase();
 

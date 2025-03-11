@@ -2,17 +2,17 @@ package entities;
 
 import enums.TipoProduto;
 
-public abstract class Product {
+public abstract class Produto {
 
     private Integer id;
     private String name;
     private double price;
     private TipoProduto tipo;
 
-    public Product() {
+    public Produto() {
     }
 
-    public Product(Integer id, String name, double price, TipoProduto tipo) {
+    public Produto(Integer id, String name, double price, TipoProduto tipo) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -52,10 +52,10 @@ public abstract class Product {
     }
 
     public void exibir_informacoes() {
-        System.out.println("Id: " + getId());
-        System.out.println("Nome: " + getName());
-        System.out.println("Preço: " + getPrice());
-        System.out.println("Tipo: " + getTipo());
+        System.out.println("ㄴId: " + getId());
+        System.out.println("ㄴNome: " + getName());
+        System.out.println("ㄴPreço: " + getPrice());
+        System.out.println("ㄴTipo: " + getTipo());
     }
 
     @Override
