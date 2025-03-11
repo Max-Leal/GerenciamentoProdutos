@@ -32,22 +32,27 @@ public class Main {
                     if (prod != null) {
                         products.add(prod);
                         System.out.println(prod.getTipo() + " adicionado com sucesso!");
-                        System.out.println(prod);
                     } else {
                         System.out.println("Erro ao adicionar produto!");
                     }
                     break;
                 case 2:
                     System.out.print("Insira o index do produto a ser alterado: ");
-                    int index = sc.nextInt();
-                    products.set(index, modificarProduto(products, sc, dtf));
+                    int idAlterar = sc.nextInt();
+                    products.set(idAlterar - 1, modificarProduto(products, sc, dtf));
                     break;
                 case 3:
+                    System.out.print("Insira o index do produto a ser excluido: ");
+                    int idExcluir = sc.nextInt();
+                    products.remove(idExcluir - 1);
                     break;
                 case 4:
                     System.out.println("Produtos da lista:");
+                    int i = 0;
                     for (Product p : products) {
-                        System.out.println(p);
+                        i++;
+                        System.out.println("Produto" + i);
+                        p.exibir_informacoes();
                     }
                     break;
                 case 5:
@@ -56,6 +61,7 @@ public class Main {
 
             }
         }
+        System.out.println("Operações registradas!");
         sc.close();
     }
 
