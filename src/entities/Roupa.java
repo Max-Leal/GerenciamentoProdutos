@@ -36,4 +36,12 @@ public class Roupa extends Product {
         System.out.println("Material: " + getMaterial());
 
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Roupa{" +
+                "tamanho='" + tamanho + '\'' +
+                ", material='" + material + '\'' +
+                '}';
+    }
 }

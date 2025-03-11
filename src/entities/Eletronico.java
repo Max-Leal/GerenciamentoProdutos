@@ -37,4 +37,12 @@ public class Eletronico extends Product {
         System.out.println("Garantia Meses: " + getGarantiaMeses());
 
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Eletronico{" +
+                "marca='" + marca + '\'' +
+                ", garantiaMeses=" + garantiaMeses +
+                '}';
+    }
 }

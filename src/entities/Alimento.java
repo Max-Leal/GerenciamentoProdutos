@@ -37,4 +37,12 @@ public class Alimento extends Product {
         System.out.println("Categoria: " + getCategoria());
         System.out.println("Data de Validade: " + getDataValidade());
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Alimento{" +
+                "dataValidade=" + dataValidade +
+                ", categoria='" + categoria + '\'' +
+                '}';
+    }
 }

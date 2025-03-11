@@ -9,7 +9,8 @@ public abstract class Product {
     private double price;
     private TipoProduto tipo;
 
-    public Product() {}
+    public Product() {
+    }
 
     public Product(Integer id, String name, double price, TipoProduto tipo) {
         this.id = id;
@@ -55,5 +56,15 @@ public abstract class Product {
         System.out.println("Nome: " + getName());
         System.out.println("Preço: " + getPrice());
         System.out.println("Tipo: " + getTipo());
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", tipo=" + tipo +
+                '}';
     }
 }

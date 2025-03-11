@@ -19,27 +19,47 @@ public class Main {
         List<Product> products = new ArrayList<Product>();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        System.out.println("Escolha a operação: \n1 - Adicionar Produto\n2 - Alterar Produto\n3 - Excluir Produto\n4 - Listar Produto\n5 - Sair");
-        int opc = sc.nextInt();
-        switch (opc) {
-            case 1:
-                Product prod = adicionarProduto(products, sc, dtf);
+        char end = 'N';
+        while (end == 'N') {
 
-                if (prod != null) {
-                    products.add(prod);
-                    System.out.println(prod.getTipo() + " adicionado com sucesso!");
-                } else {
-                    System.out.println("Erro ao adicionar produto!");
-                }
-                break;
-            case 2:
-                System.out.println(" ");
 
+            System.out.println("Escolha a operação: \n1 - Adicionar Produto\n2 - Alterar Produto\n3 - Excluir Produto\n4 - Listar Produto\n5 - Sair");
+            int opc = sc.nextInt();
+            switch (opc) {
+                case 1:
+                    Product prod = modificarProduto(products, sc, dtf);
+
+                    if (prod != null) {
+                        products.add(prod);
+                        System.out.println(prod.getTipo() + " adicionado com sucesso!");
+                        System.out.println(prod);
+                    } else {
+                        System.out.println("Erro ao adicionar produto!");
+                    }
+                    break;
+                case 2:
+                    System.out.print("Insira o index do produto a ser alterado: ");
+                    int index = sc.nextInt();
+                    products.set(index, modificarProduto(products, sc, dtf));
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    System.out.println("Produtos da lista:");
+                    for (Product p : products) {
+                        System.out.println(p);
+                    }
+                    break;
+                case 5:
+                    end = 'S';
+                    break;
+
+            }
         }
         sc.close();
     }
 
-    public static Product adicionarProduto(List<Product> list, Scanner sc, DateTimeFormatter dtf) {
+    public static Product modificarProduto(List<Product> list, Scanner sc, DateTimeFormatter dtf) {
         System.out.println("Digite o tipo do produto (ALIMENTO, ROUPA, ELETRONICO): ");
         String tipo = sc.next().toUpperCase();
 
@@ -48,15 +68,17 @@ public class Main {
             tipo = sc.next().toUpperCase();
         }
 
-        System.out.println("Digite o id do produto: ");
+        System.out.print("Digite o id do produto: ");
         int id = sc.nextInt();
-        System.out.println("Digite o nome do produto: ");
+        System.out.print("Digite o nome do produto: ");
+        sc.nextLine();
         String nome = sc.nextLine();
-        System.out.println("Digite o preço do produto: ");
+        System.out.print("Digite o preço do produto: ");
         double preco = sc.nextDouble();
 
         if (tipo.equals("ALIMENTO")) {
             System.out.print("Digite a data de validade (dd/MM/yyyy): ");
+            sc.nextLine();
             String dataValidade = sc.nextLine();
             System.out.print("Digite a categoria do produto: ");
             String categoria = sc.nextLine();
@@ -64,7 +86,8 @@ public class Main {
 
         }
         if (tipo.equals("ROUPA")) {
-            System.out.println("Digite o tamanho da roupa: ");
+            System.out.print("Digite o tamanho da roupa: ");
+            sc.nextLine();
             String tamanho = sc.nextLine();
             System.out.print("Digite o material do produto: ");
             String material = sc.nextLine();
@@ -73,6 +96,7 @@ public class Main {
 
         if (tipo.equals("ELETRONICO")) {
             System.out.print("Digite a marca do eletronico: ");
+            sc.nextLine();
             String marca = sc.nextLine();
             System.out.print("Digite a garantia do produto: ");
             int garantia = sc.nextInt();
