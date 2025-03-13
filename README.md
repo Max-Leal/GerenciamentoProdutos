@@ -59,5 +59,5 @@ O programa continua rodando até que o usuário escolha a opção **5 - Sair**.
 
 ## Autor
 
-Desenvolvido por [Max-leal]([https://github.com/seu-usuario](https://github.com/Max-Leal)).
+Desenvolvido por [Max-leal]([https://github.com/max-leal]).
 
