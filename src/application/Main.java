@@ -25,7 +25,14 @@ public class Main {
         while (end == 'N') {
 
             // Menu inicial para solicitar uma operação
-            System.out.println("Escolha a operação: \n1 - Adicionar Produto\n2 - Alterar Produto\n3 - Excluir Produto\n4 - Listar Produto\n5 - Sair");
+            System.out.println("\n*----------------------------------*");
+            System.out.println("| Escolha a operação:              |\n" +
+                    "| 1 - Adicionar Produto            |\n" +
+                    "| 2 - Alterar Produto              |\n" +
+                    "| 3 - Excluir Produto              |\n" +
+                    "| 4 - Listar Produto               |\n" +
+                    "| 5 - Sair                         |");
+            System.out.println("*----------------------------------*\n");
             int opc = sc.nextInt();
             // Switch para a escolha entre as operações
             switch (opc) {
@@ -82,13 +89,15 @@ public class Main {
                         i++;
                         // Se o tipo do produto for igual ao escolhido, printa
                         if (p.getTipo() == tipo) {
-                            System.out.println("*.*.*.*.*. Produto " + i + " .*.*.*.*.*");
+                            System.out.println("*----------- Produto " + i + " -----------*");
                             p.exibir_informacoes();
+                            System.out.println();
                         }
                         // Se o tipo escolhido for nulo, printa todos
                         if (tipo == null) {
-                            System.out.println("*.*.*.*.*. Produto " + i + " .*.*.*.*.*");
+                            System.out.println("*----------- Produto " + i + " -----------*");
                             p.exibir_informacoes();
+                            System.out.println();
                         }
                     }
                     break;
