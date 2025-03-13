@@ -6,9 +6,11 @@ import java.time.LocalDate;
 
 public class Alimento extends Produto {
 
+    // Definindo propriedades da classe
     private LocalDate dataValidade;
     private String categoria;
 
+    // Construtor para Alimento
     public Alimento(Integer id, String name, double price, TipoProduto tipo, LocalDate dataValidade, String categoria) {
         super(id, name, price, tipo);
         this.dataValidade = dataValidade;
@@ -19,10 +21,6 @@ public class Alimento extends Produto {
         return dataValidade;
     }
 
-    public void setDataValidade(LocalDate dataValidade) {
-        this.dataValidade = dataValidade;
-    }
-
     public String getCategoria() {
         return categoria;
     }
@@ -31,6 +29,7 @@ public class Alimento extends Produto {
         this.categoria = categoria;
     }
 
+    // Exibe as informações básicas do produto
     @Override
     public void exibir_informacoes() {
         super.exibir_informacoes();
@@ -38,6 +37,7 @@ public class Alimento extends Produto {
         System.out.println("ㄴData de Validade: " + getDataValidade());
     }
 
+    // toString
     @Override
     public String toString() {
         return super.toString() + "Alimento{" +

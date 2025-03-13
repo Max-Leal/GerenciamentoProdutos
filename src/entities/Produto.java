@@ -2,16 +2,20 @@ package entities;
 
 import enums.TipoProduto;
 
+// Classe abstrata para não ser declarado um produto do tipo produto
 public abstract class Produto {
 
-    private Integer id;
-    private String name;
-    private double price;
-    private TipoProduto tipo;
+    // Definindo propriedades da classe
+    private Integer id;          // Identificador único do produto
+    private String name;         // Nome do produto
+    private double price;        // Preço do produto
+    private TipoProduto tipo;    // Tipo do produto (enum)
 
+    // Construtor padrão
     public Produto() {
     }
 
+    // Construtor com parâmetros
     public Produto(Integer id, String name, double price, TipoProduto tipo) {
         this.id = id;
         this.name = name;
@@ -19,6 +23,7 @@ public abstract class Produto {
         this.tipo = tipo;
     }
 
+    // Getters e Setters
     public Integer getId() {
         return id;
     }
@@ -51,6 +56,8 @@ public abstract class Produto {
         this.tipo = tipo;
     }
 
+
+    // Exibe as informações básicas do produto
     public void exibir_informacoes() {
         System.out.println("ㄴId: " + getId());
         System.out.println("ㄴNome: " + getName());
@@ -58,6 +65,8 @@ public abstract class Produto {
         System.out.println("ㄴTipo: " + getTipo());
     }
 
+
+    // Retorna uma representação em String do produto
     @Override
     public String toString() {
         return "Product{" +
