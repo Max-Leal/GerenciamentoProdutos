@@ -20,11 +20,6 @@ public class Main {
         List<Produto> produtos = new ArrayList<Produto>();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        produtos.add(new Alimento(123,"leite",12,TipoProduto.ALIMENTO, null, "leite"));
-        produtos.add(new Alimento(123,"leite",12,TipoProduto.ALIMENTO, null, "leite"));
-        produtos.add(new Alimento(123,"leite",12,TipoProduto.ALIMENTO, null, "leite"));
-
-
         // Loop while simples, para controle do programa
         char end = 'N';
         while (end == 'N') {
