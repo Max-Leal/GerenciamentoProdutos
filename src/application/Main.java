@@ -51,9 +51,16 @@ public class Main {
 
                 // Caso 2: Alterar um produto existente com o mesmo metodo utilizado ao adicionar produto
                 case 2:
-                    System.out.print("Insira o index do produto a ser alterado: ");
-                    int idAlterar = sc.nextInt();
-                    produtos.set(idAlterar - 1, modificarProduto(produtos, sc, dtf));
+                    System.out.print("Insira o código do produto a ser alterado: ");
+                    int idProd = sc.nextInt();
+
+                    for (int i = 0; i < produtos.size(); i++) {
+                        if (produtos.get(i).getId() == idProd) {
+                            produtos.set(i, modificarProduto(produtos, sc, dtf));
+                            break;
+                        }
+                    }
+
                     break;
 
                 // Caso 3: Excluir um produto existente
