@@ -3,10 +3,12 @@ package entities;
 import enums.TipoProduto;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Alimento extends Produto {
 
     // Definindo propriedades da classe
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private LocalDate dataValidade;
     private String categoria;
 
@@ -34,7 +36,7 @@ public class Alimento extends Produto {
     public void exibir_informacoes() {
         super.exibir_informacoes();
         System.out.println("ㄴCategoria: " + getCategoria());
-        System.out.println("ㄴData de Validade: " + getDataValidade());
+        System.out.println("ㄴData de Validade: " + getDataValidade().format(dtf));
     }
 
     // toString

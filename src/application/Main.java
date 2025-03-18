@@ -10,35 +10,38 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
+        Locale.setDefault(Locale.US);
         // Criando um scanner, uma lista de produtos e um formatador para LocalDate
         Scanner sc = new Scanner(System.in);
-        List<Produto> produtos = new ArrayList<Produto>();
+        List<Produto> produtos = new ArrayList<>();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        // Loop while simples, para controle do programa
+        // loop while simples, para controle do programa
         char end = 'N';
         while (end == 'N') {
 
             // Menu inicial para solicitar uma operação
             System.out.println("\n*----------------------------------*");
-            System.out.println("| Escolha a operação:              |\n" +
-                    "| 1 - Adicionar Produto            |\n" +
-                    "| 2 - Alterar Produto              |\n" +
-                    "| 3 - Excluir Produto              |\n" +
-                    "| 4 - Listar Produto               |\n" +
-                    "| 5 - Sair                         |");
+            System.out.println("""
+                    | Escolha a operação:              |
+                    | 1 - Adicionar Produto            |
+                    | 2 - Alterar Produto              |
+                    | 3 - Excluir Produto              |
+                    | 4 - Listar Produto               |
+                    | 5 - Sair                         |""");
             System.out.println("*----------------------------------*\n");
             int opc = sc.nextInt();
             // Switch para a escolha entre as operações
             switch (opc) {
                 // Caso 1: Adicionar um novo produto
                 case 1:
-                    Produto prod = modificarProduto(produtos, sc, dtf);
+                    Produto prod = modificarProduto(sc, dtf);
 
                     // Verifica se o produto é nulo, caso for, dispara um erro, caso não for, registra na lista
                     if (prod != null) {
@@ -54,20 +57,25 @@ public class Main {
                     System.out.print("Insira o código do produto a ser alterado: ");
                     int idProd = sc.nextInt();
 
-                    for (int i = 0; i < produtos.size(); i++) {
-                        if (produtos.get(i).getId() == idProd) {
-                            produtos.set(i, modificarProduto(produtos, sc, dtf));
+                    for (Produto produto : produtos) {
+                        if (produto.getId() == idProd) {
+                            produto = modificarProduto(sc, dtf);
                             break;
                         }
                     }
-
                     break;
 
                 // Caso 3: Excluir um produto existente
                 case 3:
-                    System.out.print("Insira o index do produto a ser excluido: ");
+                    System.out.print("Insira o código do produto a ser excluído: ");
                     int idExcluir = sc.nextInt();
-                    produtos.remove(idExcluir - 1);
+
+                    for (Produto produto : produtos) {
+                        if (produto.getId() == idExcluir) {
+                            produtos.remove(produto);
+                            break;
+                        }
+                    }
                     break;
 
                 // Caso 4: Listar todos os produtos
@@ -120,7 +128,7 @@ public class Main {
     }
 
     // metodo para devolver um tipo de produto
-    public static Produto modificarProduto(List<Produto> list, Scanner sc, DateTimeFormatter dtf) {
+    public static Produto modificarProduto(Scanner sc, DateTimeFormatter dtf) {
         System.out.println("Digite o tipo do produto (ALIMENTO, ROUPA, ELETRONICO): ");
         String tipo = sc.next().toUpperCase();
 
@@ -140,33 +148,37 @@ public class Main {
         double preco = sc.nextDouble();
 
         // Criação de um produto do tipo Alimento
-        if (tipo.equals("ALIMENTO")) {
-            System.out.print("Digite a data de validade (dd/MM/yyyy): ");
-            sc.nextLine();
-            String dataValidade = sc.nextLine();
-            System.out.print("Digite a categoria do produto: ");
-            String categoria = sc.nextLine();
-            return new Alimento(id, nome, preco, TipoProduto.valueOf(tipo), LocalDate.parse(dataValidade, dtf), categoria);
-        }
+        switch (tipo) {
+            case "ALIMENTO" -> {
+                System.out.print("Digite a data de validade (dd/MM/yyyy): ");
+                sc.nextLine();
+                String dataValidade = sc.nextLine();
+                System.out.print("Digite a categoria do produto: ");
+                String categoria = sc.nextLine();
+                return new Alimento(id, nome, preco, TipoProduto.valueOf(tipo), LocalDate.parse(dataValidade, dtf), categoria);
+            }
 
-        // Criação de um produto do tipo Roupa
-        if (tipo.equals("ROUPA")) {
-            System.out.print("Digite o tamanho da roupa: ");
-            sc.nextLine();
-            String tamanho = sc.nextLine();
-            System.out.print("Digite o material do produto: ");
-            String material = sc.nextLine();
-            return new Roupa(id, nome, preco, TipoProduto.valueOf(tipo), tamanho, material);
-        }
 
-        // Criação de um produto do tipo Eletronico
-        if (tipo.equals("ELETRONICO")) {
-            System.out.print("Digite a marca do eletronico: ");
-            sc.nextLine();
-            String marca = sc.nextLine();
-            System.out.print("Digite a garantia do produto: ");
-            int garantia = sc.nextInt();
-            return new Eletronico(id, nome, preco, TipoProduto.valueOf(tipo), marca, garantia);
+            // Criação de um produto do tipo Roupa
+            case "ROUPA" -> {
+                System.out.print("Digite o tamanho da roupa: ");
+                sc.nextLine();
+                String tamanho = sc.nextLine();
+                System.out.print("Digite o material do produto: ");
+                String material = sc.nextLine();
+                return new Roupa(id, nome, preco, TipoProduto.valueOf(tipo), tamanho, material);
+            }
+
+
+            // Criação de um produto do tipo Eletronico
+            case "ELETRONICO" -> {
+                System.out.print("Digite a marca do eletronico: ");
+                sc.nextLine();
+                String marca = sc.nextLine();
+                System.out.print("Digite a garantia do produto: ");
+                int garantia = sc.nextInt();
+                return new Eletronico(id, nome, preco, TipoProduto.valueOf(tipo), marca, garantia);
+            }
         }
 
         // Retorno nulo em caso de erro
