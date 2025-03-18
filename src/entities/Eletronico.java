@@ -9,7 +9,7 @@ public class Eletronico extends Produto {
     private int garantiaMeses;
 
     // Construtor para Eletronico
-    public Eletronico(Integer id, String name, double price, TipoProduto tipo, String marca, int garantiaMeses) {
+    public Eletronico(String id, String name, double price, TipoProduto tipo, String marca, int garantiaMeses) {
         super(id, name, price, tipo);
         this.marca = marca;
         this.garantiaMeses = garantiaMeses;

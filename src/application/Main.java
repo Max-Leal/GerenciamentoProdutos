@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -41,7 +42,7 @@ public class Main {
             switch (opc) {
                 // Caso 1: Adicionar um novo produto
                 case 1:
-                    Produto prod = modificarProduto(sc, dtf);
+                    Produto prod = modificarProduto(produtos, sc, dtf);
 
                     // Verifica se o produto é nulo, caso for, dispara um erro, caso não for, registra na lista
                     if (prod != null) {
@@ -55,11 +56,11 @@ public class Main {
                 // Caso 2: Alterar um produto existente com o mesmo metodo utilizado ao adicionar produto
                 case 2:
                     System.out.print("Insira o código do produto a ser alterado: ");
-                    int idProd = sc.nextInt();
+                    String idProd = sc.next();
 
                     for (Produto produto : produtos) {
-                        if (produto.getId() == idProd) {
-                            produto = modificarProduto(sc, dtf);
+                        if (produto.getId().equals(idProd)) {
+                            produto = modificarProduto(produtos,sc, dtf);
                             break;
                         }
                     }
@@ -68,14 +69,10 @@ public class Main {
                 // Caso 3: Excluir um produto existente
                 case 3:
                     System.out.print("Insira o código do produto a ser excluído: ");
-                    int idExcluir = sc.nextInt();
+                    String idExcluir = sc.next();
 
-                    for (Produto produto : produtos) {
-                        if (produto.getId() == idExcluir) {
-                            produtos.remove(produto);
-                            break;
-                        }
-                    }
+                    // utilização de lambda para excluir caso esteja com o id
+                    produtos.removeIf(p -> p.getId().equals(idExcluir));
                     break;
 
                 // Caso 4: Listar todos os produtos
@@ -128,7 +125,7 @@ public class Main {
     }
 
     // metodo para devolver um tipo de produto
-    public static Produto modificarProduto(Scanner sc, DateTimeFormatter dtf) {
+    public static Produto modificarProduto(List list, Scanner sc, DateTimeFormatter dtf) {
         System.out.println("Digite o tipo do produto (ALIMENTO, ROUPA, ELETRONICO): ");
         String tipo = sc.next().toUpperCase();
 
@@ -140,7 +137,25 @@ public class Main {
 
         // Solicitação dos dados básicos do produto
         System.out.print("Digite o id do produto: ");
-        int id = sc.nextInt();
+        String id;
+
+        // verificação se ja existe um id cadastrado com expressão lambda
+        do {
+            id = sc.next();
+            String idFinal = id; // Criando uma variável efetivamente final
+
+            // utilização do anyMatch junto com lambda para encontrar se há algum produto com o id desejado
+            boolean idExiste = list.stream().anyMatch(p -> ((Produto) p).getId().equals(idFinal));
+
+            if (idExiste) {
+                System.out.print("ID já cadastrado! Digite um novo ID: ");
+            } else {
+                break;
+            }
+
+        } while (true);
+
+
         System.out.print("Digite o nome do produto: ");
         sc.nextLine();
         String nome = sc.nextLine();

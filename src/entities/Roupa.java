@@ -9,7 +9,7 @@ public class Roupa extends Produto {
     private String material;
 
     // Construtor para Roupa
-    public Roupa(Integer id, String name, double price, TipoProduto tipo, String tamanho, String material) {
+    public Roupa(String id, String name, double price, TipoProduto tipo, String tamanho, String material) {
         super(id, name, price, tipo);
         this.tamanho = tamanho;
         this.material = material;

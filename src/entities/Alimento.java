@@ -13,7 +13,7 @@ public class Alimento extends Produto {
     private String categoria;
 
     // Construtor para Alimento
-    public Alimento(Integer id, String name, double price, TipoProduto tipo, LocalDate dataValidade, String categoria) {
+    public Alimento(String id, String name, double price, TipoProduto tipo, LocalDate dataValidade, String categoria) {
         super(id, name, price, tipo);
         this.dataValidade = dataValidade;
         this.categoria = categoria;

@@ -6,7 +6,7 @@ import enums.TipoProduto;
 public abstract class Produto {
 
     // Definindo propriedades da classe
-    private Integer id;          // Identificador único do produto
+    private String id;          // Identificador único do produto
     private String name;         // Nome do produto
     private double price;        // Preço do produto
     private TipoProduto tipo;    // Tipo do produto (enum)
@@ -16,7 +16,7 @@ public abstract class Produto {
     }
 
     // Construtor com parâmetros
-    public Produto(Integer id, String name, double price, TipoProduto tipo) {
+    public Produto(String id, String name, double price, TipoProduto tipo) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -24,11 +24,11 @@ public abstract class Produto {
     }
 
     // Getters e Setters
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -66,7 +66,7 @@ public abstract class Produto {
     }
 
 
-    // Retorna uma representação em String do produto
+    // Retorna uma representação em string do produto
     @Override
     public String toString() {
         return "Product{" +
