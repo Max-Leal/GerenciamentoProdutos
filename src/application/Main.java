@@ -164,6 +164,11 @@ public class Main {
         System.out.println("Digite o tipo do produto: \n1 - ALIMENTO\n2 - ROUPA\n3 - ELETRONICO ");
         int escTipo = sc.nextInt();
 
+        while (escTipo < 1 || escTipo > 3) {
+            System.out.print("Insira um valor valido: ");
+            escTipo = sc.nextInt();
+        }
+
         System.out.print("Digite o nome do produto: ");
         sc.nextLine();
         String nome = sc.nextLine();
@@ -215,6 +220,11 @@ public class Main {
         // Pedindo as informações do produto que vai ser alterado
         System.out.println("Digite o tipo do produto: \n1 - ALIMENTO\n2 - ROUPA\n3 - ELETRONICO ");
         int escTipo = sc.nextInt();
+
+        while (escTipo < 1 || escTipo > 3) {
+            System.out.print("Insira um valor valido: ");
+            escTipo = sc.nextInt();
+        }
 
         System.out.print("Digite o nome do produto: ");
         sc.nextLine();
